@@ -331,13 +331,14 @@ client.on("messageCreate", async (message) => {
 
 process.on("unhandledRejection", console.error);
 
-console.log("TOKEN length:", process.env.TOKEN?.length);
+client.once("ready", () => {
+  console.log(`✅ Bot listo como ${client.user.tag}`);
+});
+setTimeout(() => {
+  console.log("Si ves esto, el código llega hasta aquí.");
+}, 3000);
 
+console.log("Intentando login...");
 client.login(process.env.TOKEN)
   .then(() => console.log("LOGIN PROMESA OK"))
-  .catch(err => {
-    console.error("ERROR EN LOGIN:");
-    console.error(err);
-  });
-
-client.on("error", console.error);
+  .catch(err => console.error("ERROR EN LOGIN:", err));
