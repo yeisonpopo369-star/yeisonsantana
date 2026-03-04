@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Bot activo 24/7");
+  res.send("Bot activo");
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Servidor web activo");
+const PORT = process.env.PORT || 10000;
+
+app.listen(PORT, () => {
+  console.log("Servidor listo en puerto " + PORT);
 });
 const {
   Client,
@@ -329,3 +331,5 @@ client.on("messageCreate", async (message) => {
 
 console.log("TOKEN detectado:", process.env.TOKEN ? "SI" : "NO");
 client.login(process.env.TOKEN);
+client.on("error", console.error);
+client.on("debug", console.log);
