@@ -327,4 +327,5 @@ client.on("messageCreate", async (message) => {
   }
 });
 
+console.log("TOKEN detectado:", process.env.TOKEN ? "SI" : "NO");
 client.login(process.env.TOKEN);
