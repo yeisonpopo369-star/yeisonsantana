@@ -329,7 +329,15 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-console.log("TOKEN detectado:", process.env.TOKEN ? "SI" : "NO");
-client.login(process.env.TOKEN);
+process.on("unhandledRejection", console.error);
+
+console.log("TOKEN length:", process.env.TOKEN?.length);
+
+client.login(process.env.TOKEN)
+  .then(() => console.log("LOGIN PROMESA OK"))
+  .catch(err => {
+    console.error("ERROR EN LOGIN:");
+    console.error(err);
+  });
+
 client.on("error", console.error);
-client.on("debug", console.log);
